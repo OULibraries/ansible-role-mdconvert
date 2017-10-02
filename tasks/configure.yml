@@ -1,0 +1,34 @@
+---
+- name: Ensure app etc directory exists
+  file:
+    path: "/srv/mdconvert/etc"
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+
+- name: Configure nginx for converter
+  template:
+    src: "mdconvert.inc.j2"
+    dest: "/srv/mdconvert/etc/nginx.conf"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Configure uploads directory
+  file:
+    path: "/srv/mdconvert/src/htdocs"
+    owner: "apache"
+    group: "apache"
+    mode:  "0755"
+    state: "directory"
+
+- name: Set httpd SELinux context for app files
+  command: >
+    semanage fcontext -a -t httpd_sys_rw_content_t  "/srv/mdconvert/src(/.*)?"
+  become: yes
+
+- name: Apply SELinux context for search gateway files
+  command: >
+    restorecon -rv /srv/mdconvert
+  become: yes

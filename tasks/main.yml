@@ -1,2 +1,16 @@
 ---
 # tasks file for OULibraries.mdconverter
+
+- include: yum.yml
+  become: true
+
+- include: wkhtmltox.yml
+  become: true
+
+- include: install.yml
+  become: true
+  tags: mdconverter_install
+
+- include: configure.yml
+  become: true
+  tags: mdconverter_configure

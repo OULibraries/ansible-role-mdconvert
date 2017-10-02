@@ -1,0 +1,18 @@
+---
+
+- name: Install destination /opt/local exists.
+  file:
+    path: /opt/local
+    state: directory
+    mode: 0775
+
+- name: wkhtmltox installed.  
+  unarchive:
+    src: https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
+    dest: /opt/local/
+    remote_src: yes
+
+- name: Verify selinux policy applied to /opt/local
+  command: >
+    restorecon -rv /opt/local
+

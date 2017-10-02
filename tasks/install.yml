@@ -1,0 +1,6 @@
+---
+- name:  Get install files
+  git:
+    repo: "https://github.com/OULibraries/Pandoc-Web-Interface.git"
+    dest: "/srv/mdconvert/src" 
+
