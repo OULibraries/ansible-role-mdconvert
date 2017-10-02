@@ -1,16 +1,18 @@
----
-# tasks file for OULibraries.mdconverter
+--
+# tasks file for OULibraries.mdconvert
 
 - include: yum.yml
   become: true
+  tags: mdconvert_yum
 
 - include: wkhtmltox.yml
   become: true
+  tags: mdconvert_wkhtmltox
 
 - include: install.yml
   become: true
-  tags: mdconverter_install
+  tags: mdconvert_install
 
 - include: configure.yml
   become: true
-  tags: mdconverter_configure
+  tags: mdconvert_configure

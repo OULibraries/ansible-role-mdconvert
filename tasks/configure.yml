@@ -17,7 +17,7 @@
 
 - name: Configure uploads directory
   file:
-    path: "/srv/mdconvert/src/htdocs"
+    path: "/srv/mdconvert/src/htdocs/uploads"
     owner: "apache"
     group: "apache"
     mode:  "0755"
